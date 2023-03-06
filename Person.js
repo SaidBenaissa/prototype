@@ -1,26 +1,27 @@
-// Prototyp für Person
+// Prototyp für Person: one use of prototype is to define/share methods for all instances of a class
 
 function Person(fName, lName) {
     this.firstName = fName;
     this.lastName = lName;
-    
+
+    // Define method inside class then it's only available for the instance of the class (Person)
+    // this.getFullName = function() {
+    //     return this.firstName + " " + this.lastName;
+    // }
+}
+
+// Define method outside class using prototype then it's available for all instances of the class (Person)
+Person.prototype.getFullName = function() {
+    return this.firstName + " " + this.lastName;
 }
 
 let person1 = new Person("Max", "Mustermann");
 let person2 = new Person("Erika", "Mustermann");
 
-// JavaScript is a dynamic language that allows you to add properties to an object at any time.
-// You can also delete properties from an object at any time.
-// This is possible because JavaScript objects are mutable.
+person1.getFullName(); // Max Mustermann
+console.log(person1.getFullName()); // Max Mustermann
+person2.getFullName(); // Erika Mustermann
+console.log(person2.getFullName()); // Erika Mustermann
 
-// Adding a property to an object at any time to an object person1
-
-person1.getFullName = function() {
-    return this.firstName + " " + this.lastName;
-}
-
-console.log(person1.getFullName()); // getFullName() is a method of the object person1
-
-// console.log(person2.getFullName()); // TypeError: getFullName is not a function of person2
 
 
